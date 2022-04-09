@@ -25,6 +25,9 @@ function ENT:SpawnFunction(ply, tr, ClassName)
 
 	local pos = tr.HitPos
 	local ang = ply:GetAngles()
+
+	ang.p = 0
+	ang.r = 0
 	ang = ang + Angle(0, 90, 0)
 
 	local ent = ents.Create(ClassName)
@@ -39,6 +42,13 @@ end
 function ENT:Initialize()
 	self:SetModel("models/kingpommes/startrek/intrepid/misc_console.mdl")
 	self:PhysicsInit(SOLID_VPHYSICS)
+
+	self:PhysicsInit(SOLID_VPHYSICS)
+	local phys = self:GetPhysicsObject()
+	if IsValid(phys) then
+		phys:EnableMotion(false)
+	end
+	self.Pads = {}
 end
 
 function ENT:Use(ply)

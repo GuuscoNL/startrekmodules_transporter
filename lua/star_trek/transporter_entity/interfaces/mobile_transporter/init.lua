@@ -25,17 +25,28 @@ SELF.LogType = false
 
 SELF.Solid = true
 
+SELF.NoBuffer = true
+
+SELF.AdvancedMode = false
+
 function SELF:Open(ent, cycleClass)
+	self.PadEntities = ent.Pads
+
 	local success, windows = self:OpenInternal(
-		Vector(-13, 0, 6),
-		Angle(20, 0, -20),
-		350,
-		Vector(-30, 4, 19),
-		Angle(55, 0, -20),
-		500,
-		500,
-		Vector(0, -4, 6),
-		Angle(0, 0, -20)
+		{
+			Pos = Vector(-13, 0, 6),
+			Ang = Angle(20, 0, -20),
+			Width = 350,
+		},
+		{
+			Pos = Vector(-30, 4, 19),
+			Ang = Angle(55, 0, -20),
+			Width = 500, Height = 500,
+		},
+		{
+			Pos = Vector(0, -4, 6),
+			Ang = Angle(0, 0, -20),
+		}
 	)
 	if not success then
 		return false, windows

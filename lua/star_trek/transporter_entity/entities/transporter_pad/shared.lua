@@ -24,4 +24,4 @@ ENT.Author = "Oninoni"
 
 ENT.Category = "Star Trek"
 
-ENT.Spawnable = false
+ENT.Spawnable = true
