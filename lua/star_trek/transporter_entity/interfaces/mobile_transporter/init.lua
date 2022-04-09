@@ -25,7 +25,7 @@ SELF.LogType = false
 
 SELF.Solid = true
 
-function SELF:Open(ent)
+function SELF:Open(ent, cycleClass)
 	local success, windows = self:OpenInternal(
 		Vector(-13, 0, 6),
 		Angle(20, 0, -20),
@@ -40,6 +40,8 @@ function SELF:Open(ent)
 	if not success then
 		return false, windows
 	end
+
+	self.CycleClass = cycleClass
 
 	return true, windows, Vector(0, 3, 15), Angle(180, 0, -90)
 end

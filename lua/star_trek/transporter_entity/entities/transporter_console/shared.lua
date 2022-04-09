@@ -25,3 +25,28 @@ ENT.Author = "Oninoni"
 ENT.Category = "Star Trek"
 
 ENT.Spawnable = true
+ENT.Editable = true
+
+function ENT:SetupDataTables()
+	self:NetworkVar("String", 0, "CycleClass", {
+		KeyName = "cycle_class",
+		Edit = {
+			type = "Combo",
+			title = "Faction",
+			order = 0,
+			category = "Main",
+			text = "Federation",
+			values = {
+				["Federation"] = "federation",
+				["Klingon"] = "klingon",
+				["Romulan"] = "romulan",
+				["Cardassian"] = "cardassian",
+				["Borg"] = "borg",
+			}
+		}
+	})
+
+	if SERVER then
+		self:SetCycleClass("federation")
+	end
+end
