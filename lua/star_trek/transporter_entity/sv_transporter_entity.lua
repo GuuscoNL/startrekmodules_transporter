@@ -16,10 +16,26 @@
 --     Transporter Entity | Index    --
 ---------------------------------------
 
-Star_Trek:RequireModules("transporter")
+hook.Add("Star_Trek.Transporter.AddRooms", "Star_Trek.Transporter_Entity.AddRooms", function(interface, pads)
+	for _, ent in pairs(ents.FindByClass("transporter_console")) do
+		if ent == interface.Ent then
+			continue
+		end
 
-Star_Trek.Transporter_Entity = Star_Trek.Transporter_Entity or {}
+		if ent:GetRoomHidden() then
+			continue
+		end
 
-if SERVER then
-	include("sv_transporter_entity.lua")
-end
+		if table.Count(ent.Pads) > 0 then
+			local roomName = ent:GetRoomName()
+			if not isstring(roomName) or roomName == "" then
+				local cycleClass = ent:GetCycleClass()
+				cycleClass = cycleClass:sub(1, 1):upper() .. cycleClass:sub(2)
+
+				roomName = cycleClass .. " Transporter Room " .. ent:EntIndex()
+			end
+
+			pads[roomName] = ent.Pads
+		end
+	end
+end)

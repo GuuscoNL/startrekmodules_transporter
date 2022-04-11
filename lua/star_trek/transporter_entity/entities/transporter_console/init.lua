@@ -48,6 +48,7 @@ function ENT:Initialize()
 	if IsValid(phys) then
 		phys:EnableMotion(false)
 	end
+
 	self.Pads = {}
 end
 

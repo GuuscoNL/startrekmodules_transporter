@@ -65,9 +65,20 @@ function ENT:Initialize()
 		end
 	end
 
-	if IsValid(closestEntity) then
+	if closestDistance < 500 and IsValid(closestEntity) then
+		if table.Count(closestEntity.Pads) >= 32 then
+			return
+		end
+
 		table.insert(closestEntity.Pads, self)
+		self.Console = closestEntity
 
 		self:SetMaterial("phoenix_storms/wire/pcb_green")
+	end
+end
+
+function ENT:OnRemove()
+	if IsValid(self.Console) then
+		table.RemoveByValue(self.Console.Pads, self)
 	end
 end

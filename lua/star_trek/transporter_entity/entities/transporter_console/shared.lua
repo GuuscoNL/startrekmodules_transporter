@@ -34,7 +34,7 @@ function ENT:SetupDataTables()
 			type = "Combo",
 			title = "Faction",
 			order = 0,
-			category = "Main",
+			category = "Transporter Effect",
 			text = "Federation",
 			values = {
 				["Federation"] = "federation",
@@ -43,6 +43,27 @@ function ENT:SetupDataTables()
 				["Cardassian"] = "cardassian",
 				["Borg"] = "borg",
 			}
+		}
+	})
+
+	self:NetworkVar("String", 1, "RoomName", {
+		KeyName = "room_name",
+		Edit = {
+			type = "Generic",
+			title = "Name",
+			order = 0,
+			category = "Transporter Room",
+			waitforenter = true,
+		}
+	})
+
+	self:NetworkVar("Bool", 0, "RoomHidden", {
+		KeyName = "room_hidden",
+		Edit = {
+			type = "Boolean",
+			title = "Hidden",
+			order = 1,
+			category = "Transporter Room",
 		}
 	})
 
