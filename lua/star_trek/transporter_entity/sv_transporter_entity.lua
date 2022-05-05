@@ -35,7 +35,12 @@ hook.Add("Star_Trek.Transporter.AddRooms", "Star_Trek.Transporter_Entity.AddRoom
 				roomName = cycleClass .. " Transporter Room " .. ent:EntIndex()
 			end
 
-			pads[roomName] = ent.Pads
+			local roomId = "ENT" .. ent:EntIndex()
+
+			pads[roomId] = {
+				Name = roomName,
+				Pads = ent.Pads,
+			}
 		end
 	end
 end)
