@@ -26,7 +26,7 @@ hook.Add("Star_Trek.Transporter.AddRooms", "Star_Trek.Transporter_Entity.AddRoom
 			continue
 		end
 
-		if table.Count(ent.Pads) > 0 then
+		if table.Count(ent.Pads or {}) > 0 then
 			local roomName = ent:GetRoomName()
 			if not isstring(roomName) or roomName == "" then
 				local cycleClass = ent:GetCycleClass()
@@ -35,7 +35,7 @@ hook.Add("Star_Trek.Transporter.AddRooms", "Star_Trek.Transporter_Entity.AddRoom
 				roomName = cycleClass .. " Transporter Room " .. ent:EntIndex()
 			end
 
-			local roomId = "ENT" .. ent:EntIndex()
+			local roomId = ent:EntIndex() + 512
 
 			pads[roomId] = {
 				Name = roomName,

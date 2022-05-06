@@ -69,5 +69,9 @@ function ENT:SetupDataTables()
 
 	if SERVER then
 		self:SetCycleClass("federation")
+
+		self:NetworkVarNotify("CycleClass", self.OnVarChanged)
+		self:NetworkVarNotify("RoomName",   self.OnVarChanged)
+		self:NetworkVarNotify("RoomHidden", self.OnVarChanged)
 	end
 end

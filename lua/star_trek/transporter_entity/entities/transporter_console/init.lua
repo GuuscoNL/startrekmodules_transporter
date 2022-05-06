@@ -55,3 +55,7 @@ end
 function ENT:Use(ply)
 	Star_Trek.LCARS:OpenInterface(ply, self, "mobile_transporter", self:GetCycleClass())
 end
+
+function ENT:OnVarChanged(name, old, new)
+	hook.Run("Star_Trek.Transporter_Entity.OnVarChanged", self, name, old, new)
+end
