@@ -28,7 +28,6 @@ function ENT:SpawnFunction(ply, tr, ClassName)
 
 	ang.p = 0
 	ang.r = 0
-	ang = ang + Angle(0, 0, -90)
 
 	local ent = ents.Create(ClassName)
 	ent:SetPos(pos)
@@ -40,15 +39,20 @@ function ENT:SpawnFunction(ply, tr, ClassName)
 end
 
 function ENT:Initialize()
-	self:SetModel("models/props_c17/streetsign004e.mdl")
-	self:SetModelScale(2)
+	if isstring(self.Model) then
+		self:SetModel(self.Model)
+	else
+		self:SetModel("models/props_phx/construct/metal_plate1.mdl")
+		self:SetMaterial("phoenix_storms/wire/pcb_red")
 
-	self:SetMaterial("phoenix_storms/wire/pcb_red")
+		self.DefaultModel = true
+	end
 
 	self:PhysicsInit(SOLID_VPHYSICS)
 	local phys = self:GetPhysicsObject()
 	if IsValid(phys) then
 		phys:EnableMotion(false)
+		phys:EnableCollisions(false)
 	end
 
 	local consoleEntities = ents.FindByClass("transporter_console")
@@ -73,7 +77,9 @@ function ENT:Initialize()
 		table.insert(closestEntity.Pads, self)
 		self.Console = closestEntity
 
-		self:SetMaterial("phoenix_storms/wire/pcb_green")
+		if self.DefaultModel then
+			self:SetMaterial("phoenix_storms/wire/pcb_green")
+		end
 	end
 end
 

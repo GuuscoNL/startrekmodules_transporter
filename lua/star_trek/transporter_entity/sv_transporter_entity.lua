@@ -44,3 +44,27 @@ hook.Add("Star_Trek.Transporter.AddRooms", "Star_Trek.Transporter_Entity.AddRoom
 		end
 	end
 end)
+
+hook.Add("Star_Trek.Transporter.GetPadPosition", "Star_Trek.Transporter_Entity.Override", function(ent)
+	local parent = ent:GetParent()
+	if not IsValid(parent) then
+		return
+	end
+
+	if parent:GetClass() ~= "transporter_big_pad" then
+		return
+	end
+
+	local pos = ent:GetPos()
+	local attachmentId = ent:LookupAttachment("teleportPoint")
+	if attachmentId > 0 then
+		pos = ent:GetAttachment(attachmentId).Pos
+	end
+
+	if ent:GetModel() ~= "models/kingpommes/startrek/intrepid/transporter_personnelpad.mdl" then
+		return
+	end
+
+	local localPos = parent:WorldToLocal(pos)
+	return ent:LocalToWorld(localPos)
+end)
