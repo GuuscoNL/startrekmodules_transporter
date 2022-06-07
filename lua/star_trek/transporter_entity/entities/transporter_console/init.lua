@@ -43,7 +43,6 @@ function ENT:Initialize()
 	self:SetModel("models/kingpommes/startrek/intrepid/misc_console.mdl")
 	self:PhysicsInit(SOLID_VPHYSICS)
 
-	self:PhysicsInit(SOLID_VPHYSICS)
 	local phys = self:GetPhysicsObject()
 	if IsValid(phys) then
 		phys:EnableMotion(false)
