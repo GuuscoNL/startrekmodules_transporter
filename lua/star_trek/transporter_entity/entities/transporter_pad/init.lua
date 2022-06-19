@@ -42,7 +42,7 @@ function ENT:Initialize()
 	if isstring(self.Model) then
 		self:SetModel(self.Model)
 	else
-		self:SetModel("models/props_phx/construct/metal_plate1.mdl")
+		self:SetModel("models/hunter/plates/plate1x1.mdl")
 		self:SetMaterial("phoenix_storms/wire/pcb_red")
 
 		self.DefaultModel = true
