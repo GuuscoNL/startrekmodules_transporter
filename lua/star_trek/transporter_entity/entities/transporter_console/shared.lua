@@ -16,6 +16,8 @@
 --    Transporter Console | Shared   --
 ---------------------------------------
 
+if not istable(ENT) then Star_Trek:LoadAllModules() return end
+
 ENT.Type = "anim"
 ENT.Base = "base_gmodentity"
 

@@ -16,6 +16,8 @@
 --    Big Transporter Pad | Server   --
 ---------------------------------------
 
+if not istable(ENT) then Star_Trek:LoadAllModules() return end
+
 AddCSLuaFile("cl_init.lua")
 AddCSLuaFile("shared.lua")
 include("shared.lua")
