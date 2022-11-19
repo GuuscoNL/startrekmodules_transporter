@@ -8,16 +8,18 @@
 -- This software can be used freely, --
 --    but only distributed by me.    --
 --                                   --
---    Copyright © 2021 Jan Ziegler   --
+--    Copyright © 2022 Jan Ziegler   --
 ---------------------------------------
 ---------------------------------------
 
 ---------------------------------------
---   Star Trek Transporter | Loader  --
+--     Replicator Entity | Index     --
 ---------------------------------------
 
-Star_Trek = Star_Trek or {}
-Star_Trek.Modules = Star_Trek.Modules or {}
+Star_Trek:RequireModules("replicator")
 
-Star_Trek.Modules["transporter_entity"] = true
-Star_Trek.Modules["replicator_entity"] = true
+Star_Trek.Replicator_Entity = Star_Trek.Replicator_Entity or {}
+
+if SERVER then
+	include("sv_replicator_entity.lua")
+end
