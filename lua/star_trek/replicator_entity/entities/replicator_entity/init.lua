@@ -23,7 +23,7 @@ AddCSLuaFile("shared.lua")
 include("shared.lua")
 
 ENT.ReplicatePos = Vector(0, 9, -10)
-ENT.ReplicateAng = Angle(0, -90, 0)
+ENT.ReplicateAng = Angle(0, 90, 0)
 
 function ENT:SpawnFunction(ply, tr, ClassName)
 	if not tr.Hit then return end
