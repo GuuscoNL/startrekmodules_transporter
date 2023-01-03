@@ -23,10 +23,4 @@ Star_Trek:RequireModules("transporter")
 
 if SERVER then
 	include("sv_inhibitor_entity.lua")
-
-	concommand.Add("test", function()
-		for k, v in pairs(Star_Trek.Transporter.Inhibitors) do
-			print(k, v)
-		end 	
-	end)
 end
