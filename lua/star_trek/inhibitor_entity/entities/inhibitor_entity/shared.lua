@@ -1,3 +1,22 @@
+---------------------------------------
+---------------------------------------
+--         Star Trek Modules         --
+--                                   --
+--            Created by             --
+--              Jarkyc               --
+--                                   --
+-- This software can be used freely, --
+--    but only distributed by        --
+--     Jan 'Oninoni' Ziegler.        --
+--                                   --
+--    Copyright © 2022 Jan Ziegler   --
+---------------------------------------
+---------------------------------------
+
+---------------------------------------
+--      Inhibitor Entity | Shared    --
+---------------------------------------
+
 if not istable(ENT) then Star_Trek:LoadAllModules() return end
 
 ENT.Type = "anim"
