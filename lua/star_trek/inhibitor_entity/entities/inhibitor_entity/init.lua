@@ -20,6 +20,8 @@ function ENT:SpawnFunction(ply, tr, ClassName)
 	ent:colorMachine(color_red, ent:GetSpawner())
 	ent:SetUseType( SIMPLE_USE )
 	ent:SetMachineHealth(100)
+	ent:SetRadius(1)
+
 	undo.Create("Transporter Inhibitor")
 	undo.AddEntity(ent)
 	undo.SetPlayer(ply)
@@ -65,6 +67,13 @@ function ENT:OnTakeDamage( dmginfo )
 	local newHealth = initialHealth - dmg
 	self:SetMachineHealth(newHealth)
 
+	if self:GetVar("active") then
+		active = "True"
+	else 
+		active = "False"
+	end
+	self.ScannerData = "Activated: " .. active .. "\nRadius: " .. self:GetRadius() .. "\nHealth: " .. self:GetMachineHealth()
+
 	if self:GetMachineHealth() <= 0 then
 		local pos = self:GetPos()
 		self:Remove()
@@ -84,3 +93,14 @@ function ENT:colorMachine(color, spawner)
 	net.WriteColor(color)
 	net.Send(spawner)
 end
+
+hook.Add("Star_Trek.Sensors.ScanEntity", "Star_Trek.Inhibitor.ScanData", function(ent, scanData)
+	if ent:GetClass() == "inhibitor_entity" then
+		if ent:GetVar("active") then
+			active = "True"
+		else 
+			active = "False"
+		end
+		scanData.ScannerData = "Activated: " .. active .. "\nRadius: " .. ent:GetRadius() .. "\nHealth: " .. ent:GetMachineHealth()
+	end
+end)
