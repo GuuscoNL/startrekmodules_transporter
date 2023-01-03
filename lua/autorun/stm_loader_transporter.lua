@@ -21,3 +21,4 @@ Star_Trek.Modules = Star_Trek.Modules or {}
 
 Star_Trek.Modules["transporter_entity"] = true
 Star_Trek.Modules["replicator_entity"] = true
+Star_Trek.Modules["inhibitor_entity"] = true
