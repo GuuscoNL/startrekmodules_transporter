@@ -35,16 +35,19 @@ function ENT:SpawnFunction(ply, tr, ClassName)
 	ent:Spawn()
 	ent:SetVar("active", false)
 	ent:SetSpawner(ply)
-	local color_red = Color( 255, 0, 0 )
-	ent:colorMachine(color_red, ent:GetSpawner())
 	ent:SetUseType( SIMPLE_USE )
 	ent:SetMachineHealth(100)
 	ent:SetRadius(1)
+	ent:Activate()
 
 	undo.Create("Transporter Inhibitor")
 	undo.AddEntity(ent)
 	undo.SetPlayer(ply)
 	undo.Finish()
+
+	local spawner = ent:GetSpawner()
+	local color_red = Color( 255, 0, 0 )
+	colorMachine(ent, color_red, spawner)
 
 end
 
@@ -56,20 +59,21 @@ function ENT:Initialize()
 	if IsValid(phys) then
 		phys:EnableMotion(false)
 	end
+
 	
 end
 
 function ENT:Use(ply)
-	active = self:GetVar("active")
+	local active = self:GetVar("active")
 	if not active then
 		self:SetVar("active", true)
 		local color_green = Color( 0, 255, 0 )
-		self:colorMachine(color_green, self:GetSpawner())
+		colorMachine(self, color_green, self:GetSpawner())
 		table.insert(Star_Trek.Transporter.Inhibitors, self)
 	else
 		self:SetVar("active", false)
 		local color_red = Color( 255, 0, 0 )
-		self:colorMachine(color_red, self:GetSpawner())
+		colorMachine(self, color_red, self:GetSpawner())
 		table.RemoveByValue(Star_Trek.Transporter.Inhibitors, self)
 	end
 end
@@ -82,16 +86,9 @@ end
 
 function ENT:OnTakeDamage( dmginfo )
 	local initialHealth = self:GetMachineHealth()
-	dmg = dmginfo:GetDamage()
+	local dmg = dmginfo:GetDamage()
 	local newHealth = initialHealth - dmg
 	self:SetMachineHealth(newHealth)
-
-	if self:GetVar("active") then
-		active = "True"
-	else 
-		active = "False"
-	end
-	self.ScannerData = "Activated: " .. active .. "\nRadius: " .. self:GetRadius() .. "\nHealth: " .. self:GetMachineHealth()
 
 	if self:GetMachineHealth() <= 0 then
 		local pos = self:GetPos()
@@ -105,10 +102,10 @@ function ENT:OnTakeDamage( dmginfo )
 	end	
 end
 
-util.AddNetworkString("Star_Trek.Inhibitor.Create")
-function ENT:colorMachine(color, spawner) 
-	net.Start("Star_Trek.Inhibitor.Create")
-	net.WriteEntity(self)
+util.AddNetworkString("Star_Trek.Inhibitor.Color")
+function colorMachine(ent, color, spawner) 
+	net.Start("Star_Trek.Inhibitor.Color")
+	net.WriteEntity(ent)
 	net.WriteColor(color)
 	net.Send(spawner)
 end
