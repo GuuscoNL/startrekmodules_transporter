@@ -4,27 +4,22 @@ AddCSLuaFile("cl_init.lua")
 AddCSLuaFile("shared.lua")
 include("shared.lua")
 
-local radius
-local typeof
-
 function ENT:SpawnFunction(ply, tr, ClassName)
     local pos = tr.HitPos
 	local ang = ply:GetAngles()
 
 	ang = ang + Angle(0, 180, 0)
 
-
 	local ent = ents.Create(ClassName)
 	ent:SetPos(pos)
 	ent:SetAngles(ang)
 	ent:Spawn()
 	ent:SetVar("active", false)
+	ent:SetSpawner(ply)
 	local color_red = Color( 255, 0, 0 )
-	ent:SetColor(color_red)
+	ent:colorMachine(color_red, ent:GetSpawner())
 	ent:SetUseType( SIMPLE_USE )
 	ent:SetMachineHealth(100)
-	
-
 	undo.Create("Transporter Inhibitor")
 	undo.AddEntity(ent)
 	undo.SetPlayer(ply)
@@ -48,12 +43,12 @@ function ENT:Use(ply)
 	if not active then
 		self:SetVar("active", true)
 		local color_green = Color( 0, 255, 0 )
-		self:SetColor(color_green)
+		self:colorMachine(color_green, self:GetSpawner())
 		table.insert(Star_Trek.Transporter.Inhibitors, self)
 	else
 		self:SetVar("active", false)
 		local color_red = Color( 255, 0, 0 )
-		self:SetColor(color_red)
+		self:colorMachine(color_red, self:GetSpawner())
 		table.RemoveByValue(Star_Trek.Transporter.Inhibitors, self)
 	end
 end
@@ -79,5 +74,13 @@ function ENT:OnTakeDamage( dmginfo )
 		explode:SetKeyValue("iMagnitude", "1")
 		explode:Fire( "Explode", 0, 0 )
 		explode:EmitSound( "weapon_AWP.Single", 400, 400 )
-	end
+	end	
+end
+
+util.AddNetworkString("Star_Trek.Inhibitor.Create")
+function ENT:colorMachine(color, spawner) 
+	net.Start("Star_Trek.Inhibitor.Create")
+	net.WriteEntity(self)
+	net.WriteColor(color)
+	net.Send(spawner)
 end

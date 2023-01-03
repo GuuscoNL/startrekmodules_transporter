@@ -39,4 +39,6 @@ function ENT:SetupDataTables()
 
     })
 
+    self:NetworkVar("Entity", 2, "Spawner")
+
 end
