@@ -45,10 +45,6 @@ function ENT:SpawnFunction(ply, tr, ClassName)
 	undo.SetPlayer(ply)
 	undo.Finish()
 
-	local spawner = ent:GetSpawner()
-	local color_red = Color( 255, 0, 0 )
-	colorMachine(ent, color_red, spawner)
-
 end
 
 function ENT:Initialize()
