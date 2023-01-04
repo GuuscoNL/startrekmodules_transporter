@@ -24,7 +24,6 @@ include("shared.lua")
 
 net.Receive("Star_Trek.Inhibitor.Color", function()
     local ent = net.ReadEntity()
-    --print(ent)
     local color = net.ReadColor()
     ent:SetColor(color)
 end)
