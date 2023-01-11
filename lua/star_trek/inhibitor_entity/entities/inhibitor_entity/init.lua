@@ -19,7 +19,6 @@
 
 if not istable(ENT) then Star_Trek:LoadAllModules() return end
 
-AddCSLuaFile("cl_init.lua")
 AddCSLuaFile("shared.lua")
 include("shared.lua")
 
@@ -66,11 +65,13 @@ function ENT:Use(ply)
 		local color_green = Color( 0, 255, 0 )
 		colorMachine(self, color_green, self:GetSpawner())
 		table.insert(Star_Trek.Transporter.Inhibitors, self)
+		ply:PrintMessage(HUD_PRINTCENTER, "Inhibitor Activated")
 	else
 		self:SetVar("active", false)
 		local color_red = Color( 255, 0, 0 )
 		colorMachine(self, color_red, self:GetSpawner())
 		table.RemoveByValue(Star_Trek.Transporter.Inhibitors, self)
+		ply:PrintMessage(HUD_PRINTCENTER, "Inhibitor Deactivated")
 	end
 end
 

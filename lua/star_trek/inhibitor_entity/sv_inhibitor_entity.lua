@@ -27,7 +27,7 @@ hook.Add("Star_Trek.Transporter.BlockBeamTo", "Star_Trek.Transporter.CheckInhibi
             radius = v:GetRadius()
 
             if distance <= radius then
-                return true, "Position blocked by a dampening field!"
+                return true, "Unable to lock onto target due to interference from a dampening field!"
             end
         end
     end 
