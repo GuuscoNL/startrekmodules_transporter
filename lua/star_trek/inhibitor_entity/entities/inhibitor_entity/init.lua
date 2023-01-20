@@ -24,7 +24,7 @@ AddCSLuaFile("shared.lua")
 include("shared.lua")
 
 function ENT:SpawnFunction(ply, tr, ClassName)
-    local pos = tr.HitPos
+	local pos = tr.HitPos
 	local ang = ply:GetAngles()
 
 	ang = ang + Angle(0, 180, 0)
@@ -48,15 +48,14 @@ function ENT:SpawnFunction(ply, tr, ClassName)
 end
 
 function ENT:Initialize()
-    self:SetModel("models/props_lab/citizenradio.mdl")
-    self:PhysicsInit(SOLID_VPHYSICS)
+	self:SetModel("models/props_lab/citizenradio.mdl")
+	self:PhysicsInit(SOLID_VPHYSICS)
 
 	local phys = self:GetPhysicsObject()
 	if IsValid(phys) then
 		phys:EnableMotion(false)
 	end
 
-	
 end
 
 function ENT:Use(ply)

@@ -17,7 +17,7 @@
 --      Inhibitor Entity | Index     --
 ---------------------------------------
 
-Star_Trek.Transporter.Inhibitors = Star_Trek.Transporter.Inhibitors or {}
+Star_Trek.Transporter.Inhibitors = {}
 
 Star_Trek:RequireModules("transporter")
 
