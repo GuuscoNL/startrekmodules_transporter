@@ -3,18 +3,17 @@
 --         Star Trek Modules         --
 --                                   --
 --            Created by             --
---              Jarkyc               --
+--       Jan 'Oninoni' Ziegler       --
 --                                   --
 -- This software can be used freely, --
---    but only distributed by        --
---     Jan 'Oninoni' Ziegler.        --
+--    but only distributed by me.    --
 --                                   --
 --    Copyright © 2022 Jan Ziegler   --
 ---------------------------------------
 ---------------------------------------
 
 ---------------------------------------
---      Inhibitor Entity | Index     --
+--        Inhibitor | Server         --
 ---------------------------------------
 
 --hook.add for transporter
