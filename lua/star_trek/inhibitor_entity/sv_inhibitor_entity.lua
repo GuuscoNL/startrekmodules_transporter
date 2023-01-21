@@ -30,6 +30,6 @@ hook.Add("Star_Trek.Transporter.BlockBeamTo", "Star_Trek.Transporter.CheckInhibi
                 return true, "Unable to lock onto target due to interference from a dampening field!"
             end
         end
-    end 
+    end
 end)
 

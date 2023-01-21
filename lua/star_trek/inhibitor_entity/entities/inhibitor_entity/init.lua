@@ -96,7 +96,7 @@ function ENT:OnTakeDamage( dmginfo )
 		explode:SetKeyValue("iMagnitude", "1")
 		explode:Fire( "Explode", 0, 0 )
 		explode:EmitSound( "weapon_AWP.Single", 400, 400 )
-	end	
+	end
 end
 
 util.AddNetworkString("Star_Trek.Inhibitor.Color")
@@ -111,7 +111,7 @@ hook.Add("Star_Trek.Sensors.ScanEntity", "Star_Trek.Inhibitor.ScanData", functio
 	if ent:GetClass() == "inhibitor_entity" then
 		if ent:GetVar("active") then
 			active = "True"
-		else 
+		else
 			active = "False"
 		end
 		scanData.ScannerData = "Activated: " .. active .. "\nRadius: " .. ent:GetRadius() .. "\nHealth: " .. ent:GetMachineHealth()
