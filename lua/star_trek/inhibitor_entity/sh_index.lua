@@ -8,17 +8,18 @@
 -- This software can be used freely, --
 --    but only distributed by me.    --
 --                                   --
---    Copyright © 2021 Jan Ziegler   --
+--    Copyright © 2022 Jan Ziegler   --
 ---------------------------------------
 ---------------------------------------
 
 ---------------------------------------
---   Star Trek Transporter | Loader  --
+--        Inhibitor | Index          --
 ---------------------------------------
 
-Star_Trek = Star_Trek or {}
-Star_Trek.Modules = Star_Trek.Modules or {}
+Star_Trek:RequireModules("transporter")
 
-Star_Trek.Modules["transporter_entity"] = true
-Star_Trek.Modules["replicator_entity"] = true
-Star_Trek.Modules["inhibitor_entity"] = true
+Star_Trek.Transporter_Inhibitors = {}
+
+if SERVER then
+	include("sv_inhibitor_entity.lua")
+end
