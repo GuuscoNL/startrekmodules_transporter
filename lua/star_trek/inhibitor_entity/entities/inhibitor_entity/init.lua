@@ -43,7 +43,6 @@ function ENT:SpawnFunction(ply, tr, ClassName)
 	undo.AddEntity(ent)
 	undo.SetPlayer(ply)
 	undo.Finish()
-
 end
 
 function ENT:Initialize()
@@ -54,7 +53,6 @@ function ENT:Initialize()
 	if IsValid(phys) then
 		phys:EnableMotion(false)
 	end
-
 end
 
 function ENT:Use(ply)
@@ -113,6 +111,7 @@ hook.Add("Star_Trek.Sensors.ScanEntity", "Star_Trek.Inhibitor.ScanData", functio
 		else
 			active = "False"
 		end
+
 		scanData.ScannerData = "Activated: " .. active .. "\nRadius: " .. ent:GetRadius() .. "\nHealth: " .. ent:GetMachineHealth()
 	end
 end)

@@ -20,7 +20,6 @@ if not istable(ENT) then Star_Trek:LoadAllModules() return end
 
 include("shared.lua")
 
-
 hook.Add("HUDPaint", "Star_Trek.Transporter.InhibitorRadius", function()
     ply = LocalPlayer()
     ent = ply:GetEyeTrace().Entity

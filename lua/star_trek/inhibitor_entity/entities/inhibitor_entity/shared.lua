@@ -30,7 +30,6 @@ ENT.Spawnable = true
 ENT.Editable = true
 
 function ENT:SetupDataTables()
-
     self:NetworkVar("Float", 0, "Radius", {
         KeyName = "Radius",
         Edit = {
@@ -58,6 +57,4 @@ function ENT:SetupDataTables()
     })
 
     self:NetworkVar("Entity", 2, "Spawner")
-
-
 end
