@@ -16,9 +16,9 @@
 --        Inhibitor | Index          --
 ---------------------------------------
 
-Star_Trek.Transporter.Inhibitors = {}
-
 Star_Trek:RequireModules("transporter")
+
+Star_Trek.Transporter_Inhibitors = {}
 
 if SERVER then
 	include("sv_inhibitor_entity.lua")

@@ -63,20 +63,20 @@ function ENT:Use(ply)
 		self:SetVar("active", true)
 		local color_green = Color( 0, 255, 0 )
 		colorMachine(self, color_green, self:GetSpawner())
-		table.insert(Star_Trek.Transporter.Inhibitors, self)
+		table.insert(Star_Trek.Transporter_Inhibitors, self)
 		ply:PrintMessage(HUD_PRINTCENTER, "Inhibitor Activated")
 	else
 		self:SetVar("active", false)
 		local color_red = Color( 255, 0, 0 )
 		colorMachine(self, color_red, self:GetSpawner())
-		table.RemoveByValue(Star_Trek.Transporter.Inhibitors, self)
+		table.RemoveByValue(Star_Trek.Transporter_Inhibitors, self)
 		ply:PrintMessage(HUD_PRINTCENTER, "Inhibitor Deactivated")
 	end
 end
 
 function ENT:OnRemove()
 	if self:GetVar("active") then
-		table.RemoveByValue(Star_Trek.Transporter.Inhibitors, self)
+		table.RemoveByValue(Star_Trek.Transporter_Inhibitors, self)
 	end
 end
 
